@@ -26,7 +26,23 @@ const createBook = async (req, res, next) => {
     // catch (err) {
     //     console.log(err)
     // }
-    res.status(201).json({ book: createdBook })
+    res.json({ message: "Book successfully added!", createdBook });
+
+}
+const updateBook = async (req, res, next) => {
+    const { id, title } = req.body
+    const createdBook = {
+        id,
+        title
+    }
+    console.log('updtae')
+    for (i = 0; i < dummy_place.length; i++) {
+        if (dummy_place[i].id == id) {
+            dummy_place[i].title = title
+        }
+    }
+    res.json({ message: 'Book updated!', createdBook });
 }
 exports.getBooksById = getBooksById
 exports.createBook = createBook
+exports.updateBook = updateBook
