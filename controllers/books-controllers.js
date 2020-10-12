@@ -72,7 +72,8 @@ const deleteBook = async (req, res, next) => {
     res.json({ message: 'Book successfully deleted!' });
 }
 const getBooks = async (req, res, next) => {
-    res.json({ dummy_place })
+    const books = await book.find()
+    res.json({ books })
 }
 exports.getBooksById = getBooksById
 exports.createBook = createBook
