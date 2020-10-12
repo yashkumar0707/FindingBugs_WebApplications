@@ -43,6 +43,7 @@ const updateBook = async (req, res, next) => {
     }
     res.json({ message: 'Book updated!', createdBook });
 }
+//const deleteBook = async
 exports.getBooksById = getBooksById
 exports.createBook = createBook
 exports.updateBook = updateBook

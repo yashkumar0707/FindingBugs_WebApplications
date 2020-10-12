@@ -74,3 +74,28 @@ describe('/POST book', () => {
     });
 });
 
+
+describe('/PUT/:id book', () => {
+    it('it should UPDATE a book given the id', (done) => {
+        let book = {
+            id: 'b1',
+            title: "The Lord of the Rings",
+            author: "J.R.R. Tolkien",
+            year: 1954,
+            pages: 1170
+        }
+        // book.save((err, book) => {
+        chai.request(server)
+            .put('/api/books/b1')
+            .send(book)
+            .end((err, res) => {
+                //console.log(res)
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('message').eql('Book updated!');
+                //res.body.book.should.have.property('year').eql(1950);
+                done();
+            });
+    });
+});
+// });
