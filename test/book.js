@@ -22,7 +22,7 @@ chai.use(chaiHttp);
 describe('/GET book', () => {
     it('it should GET all the books', (done) => {
         chai.request(server)
-            .get('/api/books/b1')
+            .get('/api/books/')
             .end((err, res) => {
                 res.should.have.status(200);
                 console.log(typeof (res.body))
@@ -59,7 +59,7 @@ describe('/POST book', () => {
             pages: 1170
         }
         chai.request(server)
-            .post('/api/books')
+            .post('/api/books/')
             .send(book)
             .end((err, res) => {
                 res.should.have.status(200);
@@ -116,5 +116,23 @@ describe('/DELETE/:id book', () => {
     });
 });
 
+describe('/GET/:id book', () => {
+    it('it should GET a book by the given id', (done) => {
+        chai.request(server)
+            .get('/api/books/b1')
+            .end((err, res) => {
+                //console.log(res.body)
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.book.should.have.property('title');
+                // res.body.should.have.property('author');
+                // res.body.should.have.property('pages');
+                // res.body.should.have.property('year');
+                // res.body.should.have.property('_id').eql(book.id);
+                done();
+            });
+    });
+
+});
 
 

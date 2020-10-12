@@ -8,6 +8,11 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use('/api/books', booksRoutes)
-app.listen(5000)
+mongoose.connect('mongodb+srv://yash:yash1234@cluster0.jgkhw.mongodb.net/API_testing?retryWrites=true&w=majority').then(() => {
+    app.listen(5000)
+}).catch(err => {
+    console.log(err)
+})
+
 
 module.exports = app

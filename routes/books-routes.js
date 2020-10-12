@@ -6,5 +6,5 @@ router.get('/:bid', booksControllers.getBooksById);
 router.post('/', booksControllers.createBook)
 router.put('/:bid', booksControllers.updateBook)
 router.delete('/:bid', booksControllers.deleteBook)
-
+router.get('/', booksControllers.getBooks)
 module.exports = router
