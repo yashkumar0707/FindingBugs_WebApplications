@@ -12,9 +12,9 @@ const getBooksById = async (req, res, next) => {
     //     return b.id === bookById
     // })
     // res.json({ book });
-    let place;
+    let getBook;
     try {
-        place = await book.find({ id: bookById });
+        getBook = await book.find({ id: bookById });
     } catch (err) {
         const error = new HttpError(
             'Something went wrong, could not find a place.',
@@ -22,14 +22,15 @@ const getBooksById = async (req, res, next) => {
         );
         return next(error);
     }
-    if (!place) {
+    if (!getBook) {
         const error = new HttpError(
             'Could not find place for the provided id.',
             404
         );
         return next(error);
     }
-    res.json({ place });
+    //res.json({ book: getBook.toObject({ getters: true }) });
+    res.json({ book: getBook })
 };
 const createBook = async (req, res, next) => {
     const { id, title, author, year, pages } = req.body

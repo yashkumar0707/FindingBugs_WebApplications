@@ -1,4 +1,5 @@
-//let mongoose = require("mongoose");
+process.env.NODE_ENV = 'test';
+let mongoose = require("mongoose");
 //let Book = require('../app/models/book');
 
 //Require the dev-dependencies
@@ -6,7 +7,7 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../index');
 var should = chai.should()
-
+let Book = require('../models/books');
 
 chai.use(chaiHttp);
 //Our parent block
@@ -53,6 +54,7 @@ describe('/POST book', () => {
     // });
     it('it should POST a book ', (done) => {
         let book = {
+            id: 'b3',
             title: "The Lord of the Rings",
             author: "J.R.R. Tolkien",
             year: 1954,
@@ -101,30 +103,31 @@ describe('/PUT/:id book', () => {
 
 describe('/DELETE/:id book', () => {
     it('it should DELETE a book given the id', (done) => {
-        // let book = new Book({ title: "The Chronicles of Narnia", author: "C.S. Lewis", year: 1948, pages: 778 })
-        // book.save((err, book) => {
-        chai.request(server)
-            .delete('/api/books/b1')
-            .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('object');
-                res.body.should.have.property('message').eql('Book successfully deleted!');
-                // res.body.result.should.have.property('ok').eql(1);
-                // res.body.result.should.have.property('n').eql(1);
-                done();
-            });
+        let book = new Book({ id: 'b3', title: "The Chronicles of Narnia", author: "C.S. Lewis", year: 1948, pages: 778 })
+        book.save((err, book) => {
+            chai.request(server)
+                .delete('/api/books/b3')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Book successfully deleted!');
+                    // res.body.result.should.have.property('ok').eql(1);
+                    // res.body.result.should.have.property('n').eql(1);
+                    done();
+                });
+        });
     });
 });
 
 describe('/GET/:id book', () => {
     it('it should GET a book by the given id', (done) => {
         chai.request(server)
-            .get('/api/books/b1')
+            .get('/api/books/b2')
             .end((err, res) => {
-                //console.log(res.body)
+                //console.log(res.body.book[0])
                 res.should.have.status(200);
                 res.body.should.be.a('object');
-                res.body.book.should.have.property('title');
+                res.body.book[0].should.have.property('title');
                 // res.body.should.have.property('author');
                 // res.body.should.have.property('pages');
                 // res.body.should.have.property('year');
