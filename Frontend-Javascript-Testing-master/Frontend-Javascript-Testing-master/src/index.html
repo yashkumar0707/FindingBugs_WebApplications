@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <title>Book Finder</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <style>
+      .jumbotron {
+        background: #337ab7;
+        color: white;
+      }
+
+      .jumbotron p {
+        max-width: 75%;
+        margin: 1em auto 2em;
+      }
+
+      #book-container {
+        margin-top: 32px;
+      }
+
+      #book-container p {
+        font-size: 24px;
+        margin: 32px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>Book Finder</h1>
+        <!-- <p>Get ready for some good pun-ch lines.</p> -->
+      </div>
+    </div>
+    <main>
+      <div class="container text-center">
+        <div class="row">
+          <div class = "temp">
+            <button id ="button1" class="btn btn-lg btn-primary">Click me for some Scifi books</button>
+            <p></p>
+          </div>
+        </div>
+        <div class="row">
+          <div id="book-container1"></div>
+        </div>
+      </div>
+
+      <div class="container text-center">
+        <div class="row">
+          <div class = "temp2">
+            <button id ="button2" class="btn btn-lg btn-primary">Click me for some Thriller books</button>
+            <p></p>
+          </div>
+        </div>
+        <div class="row">
+          <div id="book-container2"></div>
+        </div>
+      </div>
+
+      <div class="container text-center">
+        <div class="row">
+          <div class = "temp3">
+            <button id ="button3" class="btn btn-lg btn-primary">Click me for some Romantic books</button>
+          </div>
+        </div>
+        <div class="row">
+          <div id="book-container3"></div>
+        </div>
+      </div>
+
+    </main>
+
+    <script>
+      (function() {
+        const scifi = [
+          "The Blazing World, by Margaret Cavendish (1666)",
+          'Frankenstein, by Mary Shelley (1818)',
+          "Foundation, by Isaac Asimov (1951)",
+          'The Stars My Destination, by Alfred Bester (1957)',
+          'Solaris, by Stanislaw Lem (1961)',
+          "Dune, by Frank Herbert (1965)",
+          "The Moon is a Harsh Mistress, by Robert Heinlein (1966)",
+          "Ice, by Anna Kavan (1967)",
+          'The Left Hand of Darkness, by Ursula K. Le Guin (1969)',
+          'A Scanner Darkly, by Philip K Dick (1977)',
+        ];
+        const thriller=[
+          "The Talented Mr. Ripley, Ripley Under Ground, Ripley’s Game by Patricia Highsmith",
+          "Gone Girl by Gillian Flynn",
+          "Those Bones Are Not My Child by Toni Cade Bambara",
+          "Enduring Love by Ian McEwan",
+          "The Shining by Stephen King",
+          "The Widow by Fiona Barton",
+          "One Flew Over the Cuckoo’s Nest by Ken Kesey",
+          "Strangers by Dean Koontz",
+          "Eileen by Ottessa Moshfegh",
+          "The Girl on the Train by Paula Hawkins"
+        ];
+        const romantic=[
+          "It Ends With Us by collen hoover",
+          "The Proposal by JASMINE GUILLORY ",
+          "Pride and Prejudice by Jane Austen",
+          " Outlander by Diana Gabaldon",
+          "Jane Eyre by Charlotte Brontë",
+          " Gone with the Wind by Margaret Mitchell",
+          " Sense and Sensibility by Jane Austen",
+          " The Notebook by Nicholas Sparks",
+          " Whitney, My Love by Judith McNaught",
+          " A Knight in Shining Armor by Jude Deveraux",
+        ];
+
+        let counter1 = 0;
+        let counter2 = 0;
+        let counter3 = 0;
+
+        const appendNewScifi = () => {
+          const p = document.createElement('p');
+          p.innerHTML = scifi[counter1++] || "I'm all out of scifi books !";
+          //p.innerHTML=thriller[counter++]||"I'm all out of thriller books !";
+          document.querySelector('#book-container1').prepend(p);
+        }
+
+        const appendNewThriller = () => {
+          const p = document.createElement('p');
+          p.innerHTML=thriller[counter2++]||"I'm all out of thriller books !";
+          document.querySelector('#book-container2').prepend(p);
+        }
+
+        const appendNewRomantic = () => {
+          const p = document.createElement('p');
+          p.innerHTML=romantic[counter3++]||"I'm all out of romantic books !";
+          document.querySelector('#book-container3').prepend(p);
+        }
+
+        const button1 = document.getElementById('button1');
+        button1.addEventListener('click', appendNewScifi);
+
+        const button2 = document.getElementById('button2');
+        button2.addEventListener('click', appendNewThriller);
+
+        const button3 = document.getElementById('button3');
+        button3.addEventListener('click', appendNewRomantic);
+      })();
+    </script>
+  </body>
+</html>
