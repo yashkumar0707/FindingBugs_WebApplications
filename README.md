@@ -1,6 +1,2 @@
-# Frontend-Javascript-Testing
-
-Run :
-1. npm install
-2. npm test
-3. npm start
+# Finding Bugs In Web Applications
+### All the individual folders have the steps to run the code.
